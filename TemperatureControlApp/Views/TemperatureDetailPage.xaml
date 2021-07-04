@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TemperatureControlApp.Views.TemperatureDetailPage"
+             Title="Temperature Detail">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Delete" 
+            Clicked="DeleteItem_Clicked" 
+            Command="{Binding DeleteCommand}">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="delete.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Save" 
+            Clicked="AddItem_Clicked" 
+            Command="{Binding SaveCommand}" >
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Map"
+            Command="{Binding MapCommand}" >
+            <ToolbarItem.IconImageSource>
+            <OnPlatform
+                    x:TypeArguments="ImageSource">
+                <On
+                        Platform="Android, UWP"
+                        Value="location.png" />
+            </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator
+                    IsRunning="{Binding IsBusy}"
+                    d:IsRunning="True" />
+                <DatePicker 
+                    MinimumDate="01/01/2015"
+                    MaximumDate="12/31/2030"
+                    Date="{Binding TemperatureSelected.Date}"/>
+                <Entry 
+                    Placeholder="Temperature" 
+                    Text="{Binding TemperatureSelected.Temperature}" />
+                <Entry
+                    Placeholder="Latitud"
+                    Text="{Binding TemperatureSelected.Latitude}" />
+                <Entry
+                    Placeholder="Longitud"
+                    Text="{Binding TemperatureSelected.Longitude}" />
+                <Button
+                    Text="Get Location"
+                    Command="{Binding GetLocationCommand}"
+                    TextColor="White"
+                    BackgroundColor="#fbbebd"
+                    BorderColor="#faa4a3"
+                    BorderWidth="1"/>
+                <Entry
+                    Placeholder="Comments"
+                    HeightRequest="100"
+                    WidthRequest="130"
+                    Text="{Binding TemperatureSelected.Comments}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
